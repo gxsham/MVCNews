@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using NewsPortal.DAL;
 using NewsPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NewsPortal.Controllers
 {
+	[Authorize]
     public class NewsController : Controller
     {
         private NewsContext db = new NewsContext();
@@ -18,7 +20,11 @@ namespace NewsPortal.Controllers
         // GET: News
         public ActionResult Index()
         {
-            return View(db.News.ToList());
+			if(User.Identity.Name == "valera@gmail.com")
+			{
+				return View(db.News.ToList());
+			}
+            return View(db.News.Where(x=> x.MailId == User.Identity.Name).ToList());
         }
 
         // GET: News/Details/5
@@ -47,9 +53,13 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Topic,CreationDate,Category,Text,Rating")] News news)
+        public ActionResult Create([Bind(Include = "Id,Topic,CreationDate,Category,Text,Rating, Author")] News news)
         {
-            if (ModelState.IsValid)
+			news.CreationDate = DateTime.Now;
+			news.Rating = 0;
+			news.MailId = User.Identity.Name;
+
+			if (ModelState.IsValid)
             {
                 db.News.Add(news);
                 db.SaveChanges();
@@ -79,7 +89,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Topic,CreationDate,Category,Text,Rating")] News news)
+        public ActionResult Edit(News news)
         {
             if (ModelState.IsValid)
             {

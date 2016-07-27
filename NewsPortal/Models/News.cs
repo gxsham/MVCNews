@@ -20,6 +20,6 @@ namespace NewsPortal.Models
 		public Category Category { get; set; }
 		public string Text { get; set; }
 		public int Rating { get; set; }
-		public virtual Author Author { get; set; }
+		public virtual string MailId { get; set; }
 	}
 }

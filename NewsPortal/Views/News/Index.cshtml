@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.Rating)
         </th>
 		<th>
-			@Html.DisplayNameFor(model => model.Author.ID)
+			@Html.DisplayNameFor(model => model.MailId)
 		</th>
         <th></th>
     </tr>
@@ -50,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
 		<td>
-			@Html.DisplayFor(modelItem => item.Author.MailId)
+			@Html.DisplayFor(modelItem => item.MailId)
 		</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

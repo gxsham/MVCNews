@@ -27,6 +27,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
 
@@ -34,9 +42,33 @@
             @Html.DisplayFor(model => model.Rating)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.MailId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MailId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

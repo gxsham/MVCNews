@@ -11,8 +11,7 @@ using NewsPortal.Models;
 
 namespace NewsPortal.Controllers
 {
-	//[Authorize (Users = "balan@gmail.com")]
-	[Authorize(Roles = "Admin")]
+	[Authorize(Users ="valera@gmail.com")]
     public class AuthorsController : Controller
     {
         private NewsContext db = new NewsContext();
@@ -24,7 +23,7 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -49,7 +48,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LastName,FirstName,Rating")] Author author)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,UserName,Rating,MailId,Password,Role")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +61,7 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -81,7 +80,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Rating")] Author author)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,UserName,Rating,MailId,Password,Role")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +92,7 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -110,7 +109,7 @@ namespace NewsPortal.Controllers
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Author author = db.Authors.Find(id);
             db.Authors.Remove(author);
