@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using NewsPortal.DAL;
 using NewsPortal.Models;
 using Microsoft.AspNet.Identity;
+using NewsPortal.Controllers; 
 
 namespace NewsPortal.Controllers
 {
@@ -20,11 +21,11 @@ namespace NewsPortal.Controllers
         // GET: News
         public ActionResult Index()
         {
-			if(User.Identity.Name == "valera@gmail.com")
+			if (User.Identity.Name == "valera@gmail.com")
 			{
 				return View(db.News.ToList());
 			}
-            return View(db.News.Where(x=> x.MailId == User.Identity.Name).ToList());
+			return View(db.News.Where(x=> x.MailId == User.Identity.Name).ToList());
         }
 
         // GET: News/Details/5

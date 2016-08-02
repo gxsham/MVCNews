@@ -1,17 +1,42 @@
-﻿@{
+﻿@model IEnumerable<NewsPortal.Models.News>
+
+@{
 	ViewBag.Title = "Home Page";
 }
+
+
 
 <div class="jumbotron">
 	<h1>News Portal</h1>
 </div>
-<div class="row">
-	<div class="col-md-4">
-		<h2>Welcome to FREE News Portal</h2>
-		<p>
-			This news portal can be used by anyone,
-			anyone can post his own news,
-			independent and free.
-		</p>
+
+<style>
+	#navlist li {
+		display: inline;
+		list-style-type: none;
+		padding-right: 20px;
+		font-family:Consolas;
+	}
+</style>
+
+@foreach (var item in Model)
+{
+	<div class="blog-post">
+		<h3>@Html.DisplayFor(modelITem => item.Topic)</h3>
+		<h3><small>@Html.DisplayFor(modelITem => item.CreationDate)</small></h3>
+		<img class="thumbnail" src="http://placehold.it/850x350">
+		<p>@Html.DisplayFor(modelITem => item.Text)</p>
+		<div >
+			<ul id="navlist">
+				<li>@Html.ActionLink($"Author:{ item.MailId}", "About", "Home")</li>
+				<li><a href="#">Rating: @Html.DisplayFor(modelITem => item.Rating)</a></li>
+			</ul>
+		</div>
 	</div>
-</div>
+}
+
+
+
+
+
+

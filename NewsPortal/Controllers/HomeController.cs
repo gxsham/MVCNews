@@ -5,14 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NewsPortal.DAL;
+
 
 namespace NewsPortal.Controllers
 {
 	public class HomeController : Controller
 	{
+		private NewsContext db = new NewsContext();
 		public ActionResult Index()
 		{
-			return View();
+			return View(db.News.OrderByDescending(x=> x.CreationDate).ToList());
 		}
 
 		public ActionResult About()
