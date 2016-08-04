@@ -15,7 +15,9 @@ namespace NewsPortal.Controllers
 		private NewsContext db = new NewsContext();
 		public ActionResult Index()
 		{
-			return View(db.News.OrderByDescending(x=> x.CreationDate).ToList());
+			var result = db.News.OrderByDescending(x => x.CreationDate).ToList();
+			result.ForEach(x => x.Text = toMarkwdown(x.Text));
+			return View(result);
 		}
 
 		public ActionResult About()
@@ -38,6 +40,14 @@ namespace NewsPortal.Controllers
 			ViewBag.Message = $"Your news page {name}.";
 
 			return View();
+		}
+
+
+		public string toMarkwdown( string text)
+		{
+			var renderer = new HeyRed.MarkdownSharp.Markdown();
+			var html = renderer.Transform(text);
+			return html;
 		}
 	}
 }

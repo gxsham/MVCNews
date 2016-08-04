@@ -12,6 +12,21 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/Content/plugins/bootstrap/bootstrap.css" rel="stylesheet">
+	<link href="/Content/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+	<link href="/Content/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+	<link href="/Content/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+	<link href="/Content/plugins/xcharts/xcharts.min.css" rel="stylesheet">
+	<link href="/Content/plugins/select2/select2.css" rel="stylesheet">
+	<link href="/Content/css/style.css" rel="stylesheet">
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -29,23 +44,43 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-					<li>@Html.ActionLink("News", "Index", "News")</li>
-					<li>@Html.ActionLink("Authors","Index","Authors")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - News Portal</p>
-        </footer>
-    </div>
+
+		@*Render Admin Dashboard*@
+		@Html.Partial("_AdminPartial")
+	
+
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - News Portal</p>
+		</footer>
+	</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
+	<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
+	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
+	<script src="plugins/tinymce/tinymce.min.js"></script>
+	<script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+	<!-- All functions for this theme + document.ready processing -->
+	<script src="js/devoops.js"></script>
+	
 </body>
+
 </html>

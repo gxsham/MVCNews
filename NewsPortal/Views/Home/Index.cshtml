@@ -25,18 +25,14 @@
 		<h3>@Html.DisplayFor(modelITem => item.Topic)</h3>
 		<h3><small>@Html.DisplayFor(modelITem => item.CreationDate)</small></h3>
 		<img class="thumbnail" src="http://placehold.it/850x350">
-		<p>@Html.DisplayFor(modelITem => item.Text)</p>
+		@(new HtmlString(item.Text))
+		
 		<div >
 			<ul id="navlist">
-				<li>@Html.ActionLink($"Author:{ item.MailId}", "About", "Home")</li>
+				<li>@Html.ActionLink($"{item.MailId}", "About", "Home")</li>
 				<li><a href="#">Rating: @Html.DisplayFor(modelITem => item.Rating)</a></li>
 			</ul>
 		</div>
 	</div>
 }
-
-
-
-
-
 
