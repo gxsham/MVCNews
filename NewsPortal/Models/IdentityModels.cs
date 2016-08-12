@@ -8,12 +8,14 @@ using NewsPortal.DAL;
 using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
-
+using System.Collections.Generic;
 
 namespace NewsPortal.Models
 {
+
+
 	public class UserStore : IUserStore<Author>, IUserPasswordStore<Author>, IUserEmailStore<Author>, IUserLockoutStore<Author, string>, IUserTwoFactorStore<Author, string>
-	{ 
+	{
 		NewsContext store = new NewsContext();
 		public async Task CreateAsync(Author user)
 		{
@@ -114,7 +116,7 @@ namespace NewsPortal.Models
 		}
 		//ni oceni code
 		public Task ResetAccessFailedCountAsync(Author user)
-		{	
+		{
 			return store.SaveChangesAsync();
 
 		}
@@ -143,7 +145,6 @@ namespace NewsPortal.Models
 			return Task.FromResult(false);
 		}
 	}
-
 
 
 }
