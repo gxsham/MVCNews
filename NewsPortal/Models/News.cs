@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace NewsPortal.Models
 {
@@ -18,6 +19,7 @@ namespace NewsPortal.Models
 		public string Topic { get; set; }
 		public DateTime CreationDate { get; set; }
 		public Category Category { get; set; }
+		[AllowHtml]
 		public string Text { get; set; }
 		public int Rating { get; set; }
 		public virtual string MailId { get; set; }
