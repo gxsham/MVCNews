@@ -26,5 +26,6 @@ namespace NewsPortal.DAL
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 		}
 
+		
 	}
 }

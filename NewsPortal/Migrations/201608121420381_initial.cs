@@ -33,6 +33,7 @@ namespace NewsPortal.Migrations
                         Text = c.String(),
                         Rating = c.Int(nullable: false),
                         MailId = c.String(),
+                        ImageLink = c.String(),
                         Author_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)

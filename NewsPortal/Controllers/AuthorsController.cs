@@ -11,7 +11,7 @@ using NewsPortal.Models;
 
 namespace NewsPortal.Controllers
 {
-	[Authorize(Users ="valera@gmail.com")]
+	[Authorize(Roles = "Admin")]
     public class AuthorsController : Controller
     {
         private NewsContext db = new NewsContext();

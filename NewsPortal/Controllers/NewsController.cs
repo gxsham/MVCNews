@@ -21,7 +21,7 @@ namespace NewsPortal.Controllers
         // GET: News
         public ActionResult Index()
         {
-			if (User.Identity.Name == "valera@gmail.com")
+			if (User.IsInRole("Admin"))
 			{
 				return View(db.News.ToList());
 			}
@@ -54,7 +54,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Topic,CreationDate,Category,Text,Rating, Author")] News news)
+        public ActionResult Create([Bind(Include = "Id,Topic,CreationDate,Category,Text,Rating, Author,ImageLink")] News news)
         {
 			news.CreationDate = DateTime.Now;
 			news.Rating = 0;

@@ -9,12 +9,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace NewsPortal.Models
 {
 
 
-	public class UserStore : IUserStore<Author>, IUserPasswordStore<Author>, IUserEmailStore<Author>, IUserLockoutStore<Author, string>, IUserTwoFactorStore<Author, string>
+	public class UserStore : IUserStore<Author>, IUserPasswordStore<Author>, IUserEmailStore<Author>, IUserLockoutStore<Author, string>, IUserTwoFactorStore<Author, string>, IUserRoleStore<Author>
 	{
 		NewsContext store = new NewsContext();
 		public async Task CreateAsync(Author user)
@@ -143,6 +144,33 @@ namespace NewsPortal.Models
 		public Task<bool> GetTwoFactorEnabledAsync(Author user)
 		{
 			return Task.FromResult(false);
+		}
+
+		//user role store
+		public Task AddToRoleAsync(Author user, string roleName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task RemoveFromRoleAsync(Author user, string roleName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<IList<string>> GetRolesAsync(Author user)
+		{
+			IList<string> list = new List<string>();
+			list.Add(user.Role);
+			return Task.FromResult(list);
+		}
+
+		public Task<bool> IsInRoleAsync(Author user, string roleName)
+		{
+			if (ReferenceEquals(user, null))
+				throw new ArgumentException("user is null", nameof(user));
+			if (ReferenceEquals(roleName, null))
+				throw new ArgumentException("role is null", nameof(roleName));
+			return Task.FromResult<bool>(user.Role == roleName);
 		}
 	}
 

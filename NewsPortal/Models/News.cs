@@ -23,5 +23,6 @@ namespace NewsPortal.Models
 		public string Text { get; set; }
 		public int Rating { get; set; }
 		public virtual string MailId { get; set; }
+		public virtual string ImageLink { get; set; }
 	}
 }
