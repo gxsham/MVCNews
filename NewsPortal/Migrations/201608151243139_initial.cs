@@ -8,17 +8,17 @@ namespace NewsPortal.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Author",
+                "dbo.Authors",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        LastName = c.String(),
-                        FirstName = c.String(),
-                        UserName = c.String(),
+                        Id = c.Long(nullable: false, identity: true),
+                        LastName = c.String(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        UserName = c.String(nullable: false),
+                        Age = c.Int(nullable: false),
                         Rating = c.Int(nullable: false),
-                        MailId = c.String(),
-                        Password = c.String(),
-                        Role = c.String(),
+                        Password = c.String(nullable: false),
+                        Role = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -26,28 +26,27 @@ namespace NewsPortal.Migrations
                 "dbo.News",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Topic = c.String(),
+                        Id = c.Long(nullable: false, identity: true),
+                        Topic = c.String(nullable: false),
                         CreationDate = c.DateTime(nullable: false),
                         Category = c.Int(nullable: false),
-                        Text = c.String(),
+                        Text = c.String(nullable: false),
                         Rating = c.Int(nullable: false),
-                        MailId = c.String(),
                         ImageLink = c.String(),
-                        Author_Id = c.String(maxLength: 128),
+                        Author_Id = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Author", t => t.Author_Id)
+                .ForeignKey("dbo.Authors", t => t.Author_Id, cascadeDelete: true)
                 .Index(t => t.Author_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.News", "Author_Id", "dbo.Author");
+            DropForeignKey("dbo.News", "Author_Id", "dbo.Authors");
             DropIndex("dbo.News", new[] { "Author_Id" });
             DropTable("dbo.News");
-            DropTable("dbo.Author");
+            DropTable("dbo.Authors");
         }
     }
 }

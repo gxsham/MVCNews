@@ -76,7 +76,7 @@ namespace NewsPortal.Controllers
 			// This doesn't count login failures towards account lockout
 			// To enable password failures to trigger account lockout, change to shouldLockout: true
 			
-			SignInStatus result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+			SignInStatus result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -112,7 +112,7 @@ namespace NewsPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Author { UserName = model.Email, MailId = model.Email, FirstName = model.FirstName, LastName = model.LastName, Role = "User"};
+                var user = new Author { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, Role = Role.Author};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

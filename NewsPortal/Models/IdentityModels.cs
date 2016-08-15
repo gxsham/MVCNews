@@ -15,13 +15,12 @@ namespace NewsPortal.Models
 {
 
 
-	public class UserStore : IUserStore<Author>, IUserPasswordStore<Author>, IUserEmailStore<Author>, IUserLockoutStore<Author, string>, IUserTwoFactorStore<Author, string>, IUserRoleStore<Author>
+	public class UserStore : IUserStore<Author, long>, IUserPasswordStore<Author, long>, IUserEmailStore<Author, long>, IUserLockoutStore<Author, long>, IUserTwoFactorStore<Author, long>, IUserRoleStore<Author, long>
 	{
 		NewsContext store = new NewsContext();
 		public async Task CreateAsync(Author user)
 		{
 			store.Authors.Add(user);
-			user.Id = new String(user.Password.Reverse().ToArray());
 			await store.SaveChangesAsync();
 		}
 
@@ -36,7 +35,7 @@ namespace NewsPortal.Models
 			store.Dispose();
 		}
 
-		public async Task<Author> FindByIdAsync(string userId) => await store.Authors.FindAsync(userId);
+		public async Task<Author> FindByIdAsync(long userId) => await store.Authors.FindAsync(userId);
 
 		public async Task<Author> FindByNameAsync(string userName) => await store.Authors.SingleOrDefaultAsync(x => x.UserName == userName);
 
@@ -75,13 +74,13 @@ namespace NewsPortal.Models
 
 		public async Task SetEmailAsync(Author user, string email)
 		{
-			user.MailId = email;
+			user.UserName = email;
 			await UpdateAsync(user);
 		}
 
 		public Task<string> GetEmailAsync(Author user)
 		{
-			return Task.FromResult(user.MailId);
+			return Task.FromResult(user.UserName);
 
 		}
 
@@ -97,7 +96,7 @@ namespace NewsPortal.Models
 
 		public async Task<Author> FindByEmailAsync(string email)
 		{
-			return await store.Authors.SingleOrDefaultAsync(x => x.MailId == email);
+			return await store.Authors.SingleOrDefaultAsync(x => x.UserName == email);
 		}
 
 		public Task<DateTimeOffset> GetLockoutEndDateAsync(Author user)
@@ -105,34 +104,34 @@ namespace NewsPortal.Models
 			return Task.FromResult(new DateTimeOffset(2020, 10, 10, 5, 5, 6, TimeSpan.FromHours(1)));
 		}
 
-		// ni oceni code
+		// not needed 
 		public Task SetLockoutEndDateAsync(Author user, DateTimeOffset lockoutEnd)
 		{
 			return store.SaveChangesAsync();
 		}
-		//ni oceni ocde
+		//not needed
 		public Task<int> IncrementAccessFailedCountAsync(Author user)
 		{
 			return store.SaveChangesAsync();
 		}
-		//ni oceni code
+		//not needed
 		public Task ResetAccessFailedCountAsync(Author user)
 		{
 			return store.SaveChangesAsync();
 
 		}
-		// ni oceni code
+		// not needed
 		public Task<int> GetAccessFailedCountAsync(Author user) => Task.FromResult(0);
 
 		public Task<bool> GetLockoutEnabledAsync(Author user)
 		{
-			//ni oceni implementate
+			//not needed
 			return Task.FromResult(false);
 		}
 
 		public Task SetLockoutEnabledAsync(Author user, bool enabled)
 		{
-			//ni oceni
+			//not needed
 			return Task.FromResult(false);
 		}
 
@@ -160,7 +159,7 @@ namespace NewsPortal.Models
 		public Task<IList<string>> GetRolesAsync(Author user)
 		{
 			IList<string> list = new List<string>();
-			list.Add(user.Role);
+			list.Add(user.Role.ToString());
 			return Task.FromResult(list);
 		}
 
@@ -170,7 +169,7 @@ namespace NewsPortal.Models
 				throw new ArgumentException("user is null", nameof(user));
 			if (ReferenceEquals(roleName, null))
 				throw new ArgumentException("role is null", nameof(roleName));
-			return Task.FromResult<bool>(user.Role == roleName);
+			return Task.FromResult(user.Role.ToString() == roleName);
 		}
 	}
 

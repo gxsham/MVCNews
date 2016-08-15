@@ -23,9 +23,9 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(long id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -48,7 +48,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,UserName,Rating,MailId,Password,Role")] Author author)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,UserName,Age,Rating,Password,Role")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -61,9 +61,9 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(long id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -80,7 +80,7 @@ namespace NewsPortal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,UserName,Rating,MailId,Password,Role")] Author author)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,UserName,Age,Rating,Password,Role")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -92,9 +92,9 @@ namespace NewsPortal.Controllers
         }
 
         // GET: Authors/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(long id)
         {
-            if (id == null)
+            if (id < 1)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -109,7 +109,7 @@ namespace NewsPortal.Controllers
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(long id)
         {
             Author author = db.Authors.Find(id);
             db.Authors.Remove(author);

@@ -12,17 +12,17 @@ namespace NewsPortal.Models
 	{
 		Political, Social, Financial, Sport, IT, International
 	}
-	public class News
+	public class News : Entity
 	{
-		
-		public int Id { get; set; }
 		public string Topic { get; set; }
 		public DateTime CreationDate { get; set; }
 		public Category Category { get; set; }
 		[AllowHtml]
 		public string Text { get; set; }
 		public int Rating { get; set; }
-		public virtual string MailId { get; set; }
+		public virtual Author Author { get; set; }
+		[Required]
+		public virtual long AuthorId { get; set; }
 		public virtual string ImageLink { get; set; }
 	}
 }

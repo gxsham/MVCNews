@@ -7,17 +7,20 @@ using System.Web;
 
 namespace NewsPortal.Models
 {
-	
-	public class Author : IUser
+	public enum Role
 	{
-		public string Id { get; set; }
+		Author, Admin
+	}
+	public class Author :Entity, IUser<long>
+	{
 		public string LastName { get; set; }
 		public string FirstName { get; set; }
 		public string UserName { get; set; }
+		public int Age { get; set; }
 		public int Rating { get; set; }
-		public string MailId { get; set; }
 		public string Password { get; set; }
-		public string Role { get; set; }
-		public virtual List<News> NewsID { get; set; }
+		public Role Role { get; set; }	
+		public virtual List<News> News { get; set; }
+
 	}
 }

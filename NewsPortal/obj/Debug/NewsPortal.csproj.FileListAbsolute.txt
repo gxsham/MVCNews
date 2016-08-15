@@ -83,3 +83,4 @@ D:\NewsPortal\NewsPortal\obj\Debug\NewsPortal.pdb
 D:\NewsPortal\NewsPortal\bin\Markdown.dll
 D:\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.initial.resources
 D:\NewsPortal\NewsPortal\obj\Debug\NewsPortal.csproj.GenerateResource.Cache
+D:\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.explicitId.resources

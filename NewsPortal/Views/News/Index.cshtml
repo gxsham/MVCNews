@@ -27,10 +27,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
-		<th>
-			@Html.DisplayNameFor(model => model.MailId)
-		</th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -51,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
 		<td>
-			@Html.DisplayFor(modelItem => item.MailId)
+			@Html.DisplayFor(modelItem => item.AuthorId)
 		</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

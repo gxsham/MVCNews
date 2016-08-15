@@ -35,9 +35,9 @@ namespace NewsPortal
 	
 
 	// Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-	public class ApplicationUserManager : UserManager<Author>
+	public class ApplicationUserManager : UserManager<Author, long>
     {
-        public ApplicationUserManager(IUserStore<Author> store)
+        public ApplicationUserManager(IUserStore<Author, long> store)
             : base(store)
         {
         }
@@ -47,7 +47,7 @@ namespace NewsPortal
 			
             var manager = new ApplicationUserManager(new UserStore());
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<Author>(manager)
+            manager.UserValidator = new UserValidator<Author, long>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -70,11 +70,11 @@ namespace NewsPortal
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<Author>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<Author, long>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<Author>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<Author, long>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -85,14 +85,14 @@ namespace NewsPortal
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<Author>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<Author, long>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<Author, string>
+    public class ApplicationSignInManager : SignInManager<Author, long>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

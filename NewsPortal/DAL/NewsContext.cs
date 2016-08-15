@@ -21,9 +21,13 @@ namespace NewsPortal.DAL
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<News>().HasKey(x => x.Id);
-			modelBuilder.Entity<Author>().HasKey(x => x.Id);
-			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+			modelBuilder.Entity<News>().Property(x => x.Topic).IsRequired();
+			modelBuilder.Entity<News>().Property(x => x.Text).IsRequired();
+			modelBuilder.Entity<Author>().Property(x => x.FirstName).IsRequired();
+			modelBuilder.Entity<Author>().Property(x => x.LastName).IsRequired();
+			modelBuilder.Entity<Author>().Property(x => x.UserName).IsRequired();
+			modelBuilder.Entity<Author>().Property(x => x.Age).IsRequired();
+			modelBuilder.Entity<Author>().Property(x => x.Password).IsRequired();
 		}
 
 		
