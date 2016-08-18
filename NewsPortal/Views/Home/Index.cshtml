@@ -10,38 +10,112 @@
     <h1>News Portal</h1>
 </div>
 
-<link href="~/Content/css/codepen.min.css" rel="stylesheet">
+
 <style>
-    #navlist li {
-        display: inline;
-        list-style-type: none;
-        padding-right: 20px;
-        font-family: Consolas;
+    /* #menu { text-align: center; } */
+
+
+    .fader {
+        /* Giving equal sizes to each element */
+        width: 375px;
+        height: 375px;
+        /* Positioning elements in lines */
+        display: inline-block;
+        /* This is necessary for position:absolute to work as desired */
+        position: relative;
+        /* Preventing zoomed images to grow outside their elements */
+        overflow: hidden;
     }
+
+        .fader img {
+            /* Stretching the images to fill whole elements */
+            width: 100%;
+            height: 100%;
+            /* Preventing blank space below the image */
+            line-height: 0;
+            /* A one-second transition was to disturbing for me */
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+            .fader img:hover {
+                /* Making images appear bigger and transparent on mouseover */
+                opacity: 0.2;
+                transform: scale(1.5,1.5); 
+            }
+
+        .fader .text {
+            /* Placing text behind images */
+            z-index: -10;
+            /* Positioning text top-left conrner in the middle of elements */
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+
+            .fader .text p {
+                /* Positioning text contents 50% left and top relative
+                   to text container's top left corner */
+               /*margin-top: -10%;
+               margin-left: -10%;*/
+            }
+
+    h2 {
+        position: absolute;
+        top: 250px;
+        left: 0;
+        width: 100%;
+    }
+
+        h2 span {
+            color: white;
+            font: bold 24px/45px Helvetica, Sans-Serif;
+            letter-spacing: -1px;
+            background: rgb(0, 0, 0); /* fallback color */
+            background: rgba(255, 0, 0, 0.7);
+            
+            padding : 10px;
+        }
+
+         h3 {
+        position: absolute;
+        top: 300px;
+        left: 0;
+        width: 100%;
+    }
+
+        h3 span {
+            color: white;
+            font: bold 14px/23px Helvetica, Sans-Serif;
+            letter-spacing: -1px;
+            background: rgb(0, 0, 0); /* fallback color */
+            background: rgba(0, 0, 0, 0.7);
+            padding : 5px;
+        }
 </style>
 
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <div class="col-lg-12">
-            <div class="well">
-                <div class="mce-content-body">
-                    <h3>@Html.DisplayFor(modelITem => item.Topic)</h3>
-                    <div>
-                        <ul id="navlist">
-                            <li>@Html.ActionLink($"{item.Author.UserName}", "About", "Home")</li>
-                            <li><a href="#">@Html.DisplayFor(modelITem => item.Category)</a></li>
-                            <li><small>@Html.DisplayFor(modelITem => item.CreationDate)</small></li>
-                        </ul>
-                    </div>
-                   
-                    <img class="thumbnail" src=@(new HtmlString(item.ImageLink)) >
-                    @(new HtmlString(item.Text))
-                    
-                </div>
-            </div>
+
+
+
+<div id="menu">
+
+@foreach (var item in Model)
+{
+    <div class="fader">
+        <div class="text">
+           <p> @(new HtmlString(item.Text)) </p>
         </div>
-    }
+        <a href="">
+            <img class="thumbnail" src=@(new HtmlString(item.ImageLink))>
+            <h2><span>@Html.DisplayFor(x=>item.Topic)</span></h2>
+            <h3><span>@Html.DisplayFor(x=>item.Category)</span></h3>
+        </a>
+    </div>
+}
 
 </div>
+
