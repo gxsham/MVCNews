@@ -165,8 +165,11 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.csprojResolveAssemblyReference.cache
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.initial.resources
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.explicitId.resources
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.csproj.GenerateResource.Cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.pdb
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Core.dll
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Windsor.dll
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Core.xml
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Windsor.xml
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.initial.resources
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.csproj.GenerateResource.Cache

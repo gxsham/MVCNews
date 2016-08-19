@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using NewsPortal.Windsor_Utils;
+using NewsPortal.Infrastructure;
 
 namespace NewsPortal
 {

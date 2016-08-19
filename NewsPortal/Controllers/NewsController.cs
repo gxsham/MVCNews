@@ -6,24 +6,34 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using NewsPortal.DAL;
 using NewsPortal.Models;
 using Microsoft.AspNet.Identity;
 using NewsPortal.Controllers;
 using System.Threading.Tasks;
 using NewsPortal.ViewModels;
+using NewsPortal.DAL;
+using NewsPortal.Repository.Interfaces;
+using NewsPortal.Repository.Implementations;
 
 namespace NewsPortal.Controllers
 {
 	[Authorize]
 	public class NewsController : Controller
 	{
-		private NewsContext db = new NewsContext();
+		private IRepository newsRepository;
+		public  NewsController()
+		{
+			this.newsRepository = new NewsRepository(new NewsContext());
+		}
 
+		public NewsController(IAuthorRepository repository)
+		{
+			this.newsRepository = repository;
+		}
 		// GET: News
 		public ActionResult Index()
 		{
-			IEnumerable<News> newsQuery = db.News;
+			IEnumerable<News> newsQuery = newsRepository.GetAll<News>(); ;
 
 			if (!User.IsInRole("Admin"))
 				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).ToList();
@@ -39,7 +49,7 @@ namespace NewsPortal.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			News news = db.News.Find(id);
+			News news = newsRepository.GetSingle<News>((long)id);
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -74,8 +84,8 @@ namespace NewsPortal.Controllers
 			};
 			if (ModelState.IsValid)
 			{
-				db.News.Add(news);
-				db.SaveChanges();
+				newsRepository.Create<News>(news);
+				newsRepository.Save<News>();
 				return RedirectToAction("Index");
 			}
 
@@ -89,7 +99,7 @@ namespace NewsPortal.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			News news = db.News.Find(id);
+			News news = newsRepository.GetSingle<News>((long)id);
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -106,8 +116,7 @@ namespace NewsPortal.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				db.Entry(news).State = EntityState.Modified;
-				db.SaveChanges();
+				newsRepository.Update(news);
 				return RedirectToAction("Index");
 			}
 			return View(news);
@@ -120,7 +129,7 @@ namespace NewsPortal.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			News news = db.News.Find(id);
+			News news = newsRepository.GetSingle<News>((long)id);
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -133,15 +142,14 @@ namespace NewsPortal.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(long id)
 		{
-			News news = db.News.Find(id);
-			db.News.Remove(news);
-			db.SaveChanges();
+			newsRepository.Delete<News>(id);
+			newsRepository.Save<News>();
 			return RedirectToAction("Index");
 		}
 
 		public ActionResult FullNews(long id)
 		{
-			News news = db.News.Find(id);
+			News news = newsRepository.GetSingle<News>((long)id);
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -153,7 +161,7 @@ namespace NewsPortal.Controllers
 		{
 			if (disposing)
 			{
-				db.Dispose();
+				newsRepository.Dispose();
 			}
 			base.Dispose(disposing);
 		}

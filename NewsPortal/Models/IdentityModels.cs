@@ -9,9 +9,9 @@ using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
-using NewsPortal.DAL;
+using NewsPortal.Models;
 
-namespace NewsPortal.Models
+namespace NewsPortal.DAL
 {
 
 

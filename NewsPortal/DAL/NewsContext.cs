@@ -1,4 +1,6 @@
-﻿using NewsPortal.Models;
+﻿
+
+using NewsPortal.Models;
 using System.Data.Entity;
 
 namespace NewsPortal.DAL

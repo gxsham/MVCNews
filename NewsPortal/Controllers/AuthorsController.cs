@@ -6,20 +6,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using NewsPortal.DAL;
 using NewsPortal.Models;
+using NewsPortal.DAL;
+using NewsPortal.Repository.Interfaces;
+using NewsPortal.Repository.Implementations;
 
 namespace NewsPortal.Controllers
 {
 	[Authorize(Roles = "Admin")]
     public class AuthorsController : Controller
     {
-        private NewsContext db = new NewsContext();
+		private IRepository authorRepository;
+		public	AuthorsController()
+		{
+			this.authorRepository = new AuthorRepository(new NewsContext());
+		}
 
+		public AuthorsController( IAuthorRepository repository)
+		{
+			this.authorRepository = repository; 
+		}
         // GET: Authors
         public ActionResult Index()
         {
-            return View(db.Authors.ToList());
+            return View(authorRepository.GetAll<Author>());
         }
 
         // GET: Authors/Details/5
@@ -29,7 +39,7 @@ namespace NewsPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = db.Authors.Find(id);
+            Author author = authorRepository.GetSingle<Author>(id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -52,8 +62,8 @@ namespace NewsPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Authors.Add(author);
-                db.SaveChanges();
+                authorRepository.Create(author);
+				authorRepository.Save<Author>();
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +77,7 @@ namespace NewsPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = db.Authors.Find(id);
+            Author author = authorRepository.GetSingle<Author>(id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -84,8 +94,7 @@ namespace NewsPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(author).State = EntityState.Modified;
-                db.SaveChanges();
+				authorRepository.Update(author);  
                 return RedirectToAction("Index");
             }
             return View(author);
@@ -98,7 +107,7 @@ namespace NewsPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Author author = db.Authors.Find(id);
+            Author author = authorRepository.GetSingle<Author>(id);
             if (author == null)
             {
                 return HttpNotFound();
@@ -111,9 +120,8 @@ namespace NewsPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Author author = db.Authors.Find(id);
-            db.Authors.Remove(author);
-            db.SaveChanges();
+			authorRepository.Delete<Author>(id);
+            authorRepository.Save<Author>();
             return RedirectToAction("Index");
         }
 
@@ -121,7 +129,7 @@ namespace NewsPortal.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+				authorRepository.Dispose();
             }
             base.Dispose(disposing);
         }

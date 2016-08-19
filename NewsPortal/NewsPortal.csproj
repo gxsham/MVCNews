@@ -211,23 +211,27 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="DAL\NewsContext.cs" />
+    <Compile Include="DAL\NewsInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608151243139_initial.cs" />
-    <Compile Include="Migrations\201608151243139_initial.Designer.cs">
-      <DependentUpon>201608151243139_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608151416412_explicitId.cs" />
-    <Compile Include="Migrations\201608151416412_explicitId.Designer.cs">
-      <DependentUpon>201608151416412_explicitId.cs</DependentUpon>
+    <Compile Include="Infrastructure\ServiceLocator.cs" />
+    <Compile Include="Migrations\201608191356008_initial.cs" />
+    <Compile Include="Migrations\201608191356008_initial.Designer.cs">
+      <DependentUpon>201608191356008_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\News.cs" />
-    <Compile Include="DAL\NewsContext.cs" />
+    <Compile Include="Repository.Implementations\AuthorRepository.cs" />
+    <Compile Include="Repository.Implementations\NewsRepository.cs" />
+    <Compile Include="Repository.Implementations\Repository.cs" />
+    <Compile Include="Repository.Interfaces\IAuthorRepository.cs" />
+    <Compile Include="Repository.Interfaces\INewsRepository.cs" />
+    <Compile Include="Repository.Interfaces\IRepository.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -867,11 +871,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608151243139_initial.resx">
-      <DependentUpon>201608151243139_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608151416412_explicitId.resx">
-      <DependentUpon>201608151416412_explicitId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608191356008_initial.resx">
+      <DependentUpon>201608191356008_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

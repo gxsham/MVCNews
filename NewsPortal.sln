@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsPortal", "NewsPortal\NewsPortal.csproj", "{CE6FD45B-948C-4AA7-9056-E5A6CAE69F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Interfaces", "Repository.Interfaces\Repository.Interfaces.csproj", "{1B70D309-334F-4B11-9CC3-F886B92F78BB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Implementations", "Repository.Implementations\Repository.Implementations.csproj", "{5A567F14-F7C1-4158-845B-A625C0339599}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{CE6FD45B-948C-4AA7-9056-E5A6CAE69F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE6FD45B-948C-4AA7-9056-E5A6CAE69F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE6FD45B-948C-4AA7-9056-E5A6CAE69F25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B70D309-334F-4B11-9CC3-F886B92F78BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B70D309-334F-4B11-9CC3-F886B92F78BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B70D309-334F-4B11-9CC3-F886B92F78BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B70D309-334F-4B11-9CC3-F886B92F78BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A567F14-F7C1-4158-845B-A625C0339599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A567F14-F7C1-4158-845B-A625C0339599}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A567F14-F7C1-4158-845B-A625C0339599}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A567F14-F7C1-4158-845B-A625C0339599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

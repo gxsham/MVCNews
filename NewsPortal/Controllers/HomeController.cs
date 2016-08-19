@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿
+using Microsoft.AspNet.Identity;
 using NewsPortal.DAL;
 using NewsPortal.Models;
+using NewsPortal.Repository.Implementations;
+using NewsPortal.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +15,20 @@ namespace NewsPortal.Controllers
 {
 	public class HomeController : Controller
 	{
-		private NewsContext db = new NewsContext();
+		private IRepository repository;
+
+		public HomeController()
+		{
+			this.repository = new NewsRepository(new NewsContext());
+		}
+
+		public HomeController(INewsRepository repository)
+		{
+			this.repository = repository;
+		}
 		public ActionResult Index()
 		{
-			var result = db.News.OrderByDescending(x => x.CreationDate).ToList();
+			var result = repository.GetAll<News>();
 			//result.ForEach(x => x.Text = toMarkwdown(x.Text));
 			return View(result);
 		}
