@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NewsPortal.Models;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using NewsPortal.Models;
 using System.Data.Entity;
 
 namespace NewsPortal.DAL
@@ -21,6 +16,7 @@ namespace NewsPortal.DAL
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
+
 			modelBuilder.Entity<News>().Property(x => x.Topic).IsRequired();
 			modelBuilder.Entity<News>().Property(x => x.Text).IsRequired();
 			modelBuilder.Entity<Author>().Property(x => x.FirstName).IsRequired();
@@ -30,6 +26,6 @@ namespace NewsPortal.DAL
 			modelBuilder.Entity<Author>().Property(x => x.Password).IsRequired();
 		}
 
-		
+
 	}
 }

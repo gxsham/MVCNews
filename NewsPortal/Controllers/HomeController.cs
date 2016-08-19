@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
+using NewsPortal.DAL;
 using NewsPortal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NewsPortal.DAL;
 
 
 namespace NewsPortal.Controllers
@@ -31,14 +31,6 @@ namespace NewsPortal.Controllers
 		{
 			var name = HttpContext.User.Identity.Name;
 			ViewBag.Message = $"Your news page {name}.";
-			return View();
-		}
-
-		public ActionResult News()
-		{
-			var name = HttpContext.User.Identity.Name;
-			ViewBag.Message = $"Your news page {name}.";
-
 			return View();
 		}
 	}

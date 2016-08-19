@@ -139,6 +139,16 @@ namespace NewsPortal.Controllers
 			return RedirectToAction("Index");
 		}
 
+		public ActionResult FullNews(long id)
+		{
+			News news = db.News.Find(id);
+			if (news == null)
+			{
+				return HttpNotFound();
+			}
+			return View(news);
+		}
+
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)

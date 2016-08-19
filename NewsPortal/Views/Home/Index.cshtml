@@ -98,9 +98,6 @@
 </style>
 
 
-
-
-
 <div id="menu">
 
 @foreach (var item in Model)
@@ -109,13 +106,15 @@
         <div class="text">
            <p> @(new HtmlString(item.Text)) </p>
         </div>
-        <a href="">
+        <a href="" id="myLink">
             <img class="thumbnail" src=@(new HtmlString(item.ImageLink))>
             <h2><span>@Html.DisplayFor(x=>item.Topic)</span></h2>
             <h3><span>@Html.DisplayFor(x=>item.Category)</span></h3>
         </a>
     </div>
 }
-
 </div>
+
+
+
 
