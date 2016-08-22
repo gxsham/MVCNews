@@ -21,11 +21,6 @@ namespace NewsPortal.Controllers
 	public class NewsController : Controller
 	{
 		private IRepository newsRepository;
-		public  NewsController()
-		{
-			this.newsRepository = new NewsRepository(new NewsContext());
-		}
-
 		public NewsController(IAuthorRepository repository)
 		{
 			this.newsRepository = repository;
@@ -41,6 +36,7 @@ namespace NewsPortal.Controllers
 
 			return View(newsQuery);
 		}
+
 
 		// GET: News/Details/5
 		public ActionResult Details(long? id)
@@ -137,6 +133,7 @@ namespace NewsPortal.Controllers
 			return View(news);
 		}
 
+		
 		// POST: News/Delete/5
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]

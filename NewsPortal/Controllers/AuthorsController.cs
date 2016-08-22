@@ -16,11 +16,7 @@ namespace NewsPortal.Controllers
 	[Authorize(Roles = "Admin")]
     public class AuthorsController : Controller
     {
-		private IRepository authorRepository;
-		public	AuthorsController()
-		{
-			this.authorRepository = new AuthorRepository(new NewsContext());
-		}
+		private IAuthorRepository authorRepository;
 
 		public AuthorsController( IAuthorRepository repository)
 		{

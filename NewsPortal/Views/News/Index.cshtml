@@ -10,54 +10,30 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorId)
-        </th>
-    </tr>
+@Styles.Render("~/Content/css")
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Topic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-		<td>
-			@Html.DisplayFor(modelItem => item.AuthorId)
-		</td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+   
+        <div class="container-fluid">
+            <h1>@Html.DisplayFor(x=>item.Topic)</h1>
+            <h3><span>@Html.DisplayFor(x => item.Category)</span></h3>
+            <ul class="dl-horizontal">
+                <li>@Html.DisplayFor(x=>item.Author.FirstName)</li>
+                <li>@Html.DisplayFor(x => item.Author.LastName)</li>
+               
+            </ul>
+            <img width="500" height="500" src=@(new HtmlString(item.ImageLink))>
+            <div class="text">
+                <p> @(new HtmlString(item.Text)) </p>
+            </div>  
+            <ul class="dl-horizontal">
+                <li>Rating: @Html.DisplayFor( x => item.Rating)</li>
+                <li>Date: @Html.DisplayFor( x => item.CreationDate)</li>
+            </ul>  
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </div>
+       
+           
 }
-
-</table>

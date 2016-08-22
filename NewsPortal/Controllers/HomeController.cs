@@ -15,12 +15,8 @@ namespace NewsPortal.Controllers
 {
 	public class HomeController : Controller
 	{
-		private IRepository repository;
-
-		public HomeController()
-		{
-			this.repository = new NewsRepository(new NewsContext());
-		}
+		private INewsRepository repository;
+		
 
 		public HomeController(INewsRepository repository)
 		{
@@ -28,11 +24,14 @@ namespace NewsPortal.Controllers
 		}
 		public ActionResult Index()
 		{
-			var result = repository.GetAll<News>();
-			//result.ForEach(x => x.Text = toMarkwdown(x.Text));
+			var result = repository.GetAll<News>().OrderByDescending(x=>x.CreationDate);
 			return View(result);
 		}
-
+		public ActionResult Filter(Category category)
+		{
+			var result = repository.GetByCategory(category).ToList();
+			return View("Index", result);
+		}
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";

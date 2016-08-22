@@ -12,7 +12,7 @@ namespace NewsPortal.Models
 {
 	public enum Category
 	{
-		Political, Social, Financial, Sport, IT, International
+		Political, Social, Economic, Sport, IT, International, Curiosity
 	}
 	public class News : Entity
 	{

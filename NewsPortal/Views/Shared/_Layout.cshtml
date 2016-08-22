@@ -43,9 +43,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Political", "Filter", "Home", new { category = 0 }, null)</li>
+                    <li>@Html.ActionLink("Social", "Filter", "Home", new { category = 1 }, null)</li>
+                    <li>@Html.ActionLink("Economic", "Filter", "Home", new { category = 2 }, null)</li>
+                    <li>@Html.ActionLink("Sport", "Filter", "Home", new { category = 3 }, null)</li>
+                    <li>@Html.ActionLink("IT", "Filter", "Home", new { category =4 }, null)</li>
+                    <li>@Html.ActionLink("International", "Filter", "Home", new { category = 5 }, null)</li>
+                    <li>@Html.ActionLink("Curiosity", "Filter", "Home", new { category = 6 }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

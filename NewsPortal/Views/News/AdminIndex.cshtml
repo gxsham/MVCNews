@@ -1,52 +1,56 @@
-﻿@model IEnumerable<NewsPortal.Models.Author>
+﻿@model IEnumerable<NewsPortal.Models.News>
 
 @{
     ViewBag.Title = "Index";
 }
 
+
 <h2>Index</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Topic)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.CreationDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Age)
+            @Html.DisplayNameFor(model => model.Text)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            @Html.DisplayNameFor(model => model.AuthorId)
         </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.Topic)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Age)
+            @Html.DisplayFor(modelItem => item.Text)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
 		<td>
-			@Html.DisplayFor(modelItem => item.Role)
+			@Html.DisplayFor(modelItem => item.AuthorId)
 		</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

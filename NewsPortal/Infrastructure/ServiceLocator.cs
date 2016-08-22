@@ -13,10 +13,10 @@
 			_kernel = kernel;
 			_kernel.Register(
 			   Component.For(typeof(IAuthorRepository))
-						.ImplementedBy(typeof(AuthorRepository)));
+						.ImplementedBy(typeof(AuthorRepository)).LifestylePerWebRequest());
 			_kernel.Register(
 			   Component.For(typeof(INewsRepository))
-						.ImplementedBy(typeof(NewsRepository)));
+						.ImplementedBy(typeof(NewsRepository)).LifestylePerWebRequest());
 		}
 
 		public static T Get<T>()

@@ -8,15 +8,6 @@ namespace NewsPortal.Repository.Implementations
 {
 	public class AuthorRepository : Repository, IAuthorRepository, IDisposable
 	{
-		private NewsContext newsContext;
-		
-
-
-		public AuthorRepository(NewsContext newsContext)
-		{
-			this.newsContext = newsContext;
-		}
-
 		
 	}
 }

@@ -9,7 +9,7 @@
 			<li class="color2">@Html.ActionLink("My News", "Index", "News")</li>
 			
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "About", "Home", routeValues: null, htmlAttributes: new { title = "Home" })
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "Authors", new {id = User.Identity.GetUserId() }, null)
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
 		
