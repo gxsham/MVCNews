@@ -15,7 +15,7 @@
                 </div>
                 <div class="meta">
                     <time class="published" datetime="2015-11-01">@Html.DisplayFor(x => item.CreationDate)</time>
-                    <a href="#" class="author">@Html.ActionLink(item.Author.UserName, "Details", "Authors", new { id = item.AuthorId, @class = "name" }, null)<img src="~/images/avatar.jpg" /></a>
+                    <a href="#" class="author"><span class="name">@Html.DisplayFor(x=>item.Author.UserName)</span><img src="~/images/avatar.jpg" /></a>
                 </div>
             </header>
             <a href="#" class="image featured"><img src=@(new HtmlString(item.ImageLink)) /></a>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,9 +10,7 @@ using Microsoft.AspNet.Identity;
 using NewsPortal.Controllers;
 using System.Threading.Tasks;
 using NewsPortal.ViewModels;
-using NewsPortal.DAL;
 using NewsPortal.Repository.Interfaces;
-using NewsPortal.Repository.Implementations;
 
 namespace NewsPortal.Controllers
 {
@@ -31,7 +28,7 @@ namespace NewsPortal.Controllers
 			IEnumerable<News> newsQuery = newsRepository.GetAll<News>(); 
 
 			if (!User.IsInRole("Admin"))
-				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).ToList();
+				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).OrderByDescending(x=>x.CreationDate).ToList();
 			
 
 			return View(newsQuery);
