@@ -4,84 +4,48 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div id="main">
+	<h2>Delete Author</h2>
+	<hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Author</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+	<div class="table-wrapper">
+		<table class="alt">
+			<tbody>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.FirstName)</td>
+					<td>@Html.DisplayFor(model => model.FirstName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.LastName)</td>
+					<td>@Html.DisplayFor(model => model.LastName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.UserName)</td>
+					<td>@Html.DisplayFor(model => model.UserName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Age)</td>
+					<td>@Html.DisplayFor(model => model.Age)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Rating)</td>
+					<td>@Html.DisplayFor(model => model.Rating)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Role)</td>
+					<td>@Html.DisplayFor(model => model.Role)</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+		<div class="form-actions no-color">
+			<input type="submit" value="Delete" class="button"/> |
+			@Html.ActionLink("Back to List", "Index")
+		</div>
+	}
 </div>
+

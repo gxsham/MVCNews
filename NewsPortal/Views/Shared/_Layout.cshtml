@@ -1,92 +1,138 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNet.Identity
 
 
 
 
-
-<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - News Portal </title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-
-
-
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/Content/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-	<link href="/Content/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-	<link href="/Content/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="/Content/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-	<link href="/Content/plugins/xcharts/xcharts.min.css" rel="stylesheet">
-	<link href="/Content/plugins/select2/select2.css" rel="stylesheet">
-	<link href="/Content/css/style.css" rel="stylesheet">
-  
-
+	<title>News Portal</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="~/assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	@RenderSection("Scripts", required: false)
 
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("News Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Political", "Filter", "Home", new { category = 0 }, null)</li>
-                    <li>@Html.ActionLink("Social", "Filter", "Home", new { category = 1 }, null)</li>
-                    <li>@Html.ActionLink("Economic", "Filter", "Home", new { category = 2 }, null)</li>
-                    <li>@Html.ActionLink("Sport", "Filter", "Home", new { category = 3 }, null)</li>
-                    <li>@Html.ActionLink("IT", "Filter", "Home", new { category =4 }, null)</li>
-                    <li>@Html.ActionLink("International", "Filter", "Home", new { category = 5 }, null)</li>
-                    <li>@Html.ActionLink("Curiosity", "Filter", "Home", new { category = 6 }, null)</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
 
-		@*Render Admin Dashboard*@
-		@Html.Partial("_AdminPartial")
-	
 
-	<div class="container body-content">
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1>@Html.ActionLink("News Portal", "Index", "Home")</h1>
+			<nav class="links">
+				<ul>
+					@{  var categories = Enum.GetNames(typeof(NewsPortal.Models.Category));
+						foreach (var item in categories)
+						{
+							<li>@Html.ActionLink(item, "Filter", "Home", new { category = item}, null)</li>
+						}
+					}
+
+					@Html.Partial("_LoginPartial")
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+				@if (Request.IsAuthenticated)
+				{
+					<li class="menu">
+						<a class="fa-bars" href="#menu">Menu</a>
+					</li>
+				}
+				
+				</ul>
+			</nav>
+		</header>
+
+
+
+
+
 		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; @DateTime.Now.Year - gxsham</p>
-		</footer>
+
+		<!-- Sidebar -->
+		<section id="sidebar">
+
+			<!-- Intro -->
+			<section id="intro">
+				<a href="#" class="logo"><img src="~/images/logo.jpg" alt="" /></a>
+				<header>
+					<h2>News Portal</h2>
+					<p>Share your news</p>
+				</header>
+			</section>
+
+			<!-- Mini Posts -->
+			<section>
+				<div class="mini-posts">
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3><a href="#">Vitae sed condimentum</a></h3>
+							<time class="published" datetime="2015-10-20">October 20, 2015</time>
+							<a href="#" class="author"><img src="~/images/avatar.jpg" alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="~/images/pic04.jpg" alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3><a href="#">Rutrum neque accumsan</a></h3>
+							<time class="published" datetime="2015-10-19">October 19, 2015</time>
+							<a href="#" class="author"><img src="~/images/avatar.jpg" alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="~/images/pic05.jpg" alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3><a href="#">Odio congue mattis</a></h3>
+							<time class="published" datetime="2015-10-18">October 18, 2015</time>
+							<a href="#" class="author"><img src="~/images/avatar.jpg" alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="~/images/pic06.jpg" alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3><a href="#">Enim nisl veroeros</a></h3>
+							<time class="published" datetime="2015-10-17">October 17, 2015</time>
+							<a href="#" class="author"><img src="~/images/avatar.jpg" alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="~/images/pic07.jpg" alt="" /></a>
+					</article>
+
+				</div>
+			</section>
+		</section>
+
 	</div>
+	<hr />
+	<footer>
+		<p>&copy; @DateTime.Now.Year - gxsham</p>
+	</footer>
 
-   
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-
-
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
-	<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
-	<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="plugins/bootstrap/bootstrap.min.js"></script>
-	<script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
-	<script src="plugins/tinymce/tinymce.min.js"></script>
-	<script src="plugins/tinymce/jquery.tinymce.min.js"></script>
-	<!-- All functions for this theme + document.ready processing -->
-	<script src="js/devoops.js"></script>
-	
+	<!-- Scripts -->
+	<script src="~/assets/js/jquery.min.js"></script>
+	<script src="~/assets/js/skel.min.js"></script>
+	<script src="~/assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="~/assets/js/main.js"></script>
 </body>
 
-</html>

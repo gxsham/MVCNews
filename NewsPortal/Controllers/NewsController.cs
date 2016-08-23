@@ -28,7 +28,7 @@ namespace NewsPortal.Controllers
 		// GET: News
 		public ActionResult Index()
 		{
-			IEnumerable<News> newsQuery = newsRepository.GetAll<News>(); ;
+			IEnumerable<News> newsQuery = newsRepository.GetAll<News>(); 
 
 			if (!User.IsInRole("Admin"))
 				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).ToList();
@@ -162,5 +162,6 @@ namespace NewsPortal.Controllers
 			}
 			base.Dispose(disposing);
 		}
+
 	}
 }

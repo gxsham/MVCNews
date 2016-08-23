@@ -1,6 +1,5 @@
 ﻿
 
-using NewsPortal.DAL;
 using NewsPortal.Repository.Interfaces;
 using System;
 

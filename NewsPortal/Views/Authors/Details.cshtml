@@ -4,65 +4,43 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Author</h4>
+<div id="main">
+    <h2>Author Details</h2>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-
-    </dl>
+	
+	<div class="table-wrapper">
+		<table class="alt">
+			<tbody>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.FirstName)</td>
+					<td>@Html.DisplayFor(model => model.FirstName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.LastName)</td>
+					<td>@Html.DisplayFor(model => model.LastName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.UserName)</td>
+					<td>@Html.DisplayFor(model => model.UserName)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Age)</td>
+					<td>@Html.DisplayFor(model => model.Age)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Rating)</td>
+					<td>@Html.DisplayFor(model => model.Rating)</td>
+				</tr>
+				<tr>
+					<td>@Html.DisplayNameFor(model => model.Role)</td>
+					<td>@Html.DisplayFor(model => model.Role)</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+

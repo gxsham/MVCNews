@@ -1,25 +1,57 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">		
-			<li class="color2">@Html.ActionLink("My News", "Index", "News")</li>
+   
+    @if (Request.IsAuthenticated)
+	{
+		using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+		{ 
+        @Html.AntiForgeryToken()
 			
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "Authors", new {id = User.Identity.GetUserId() }, null)
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+				@*<li>
+					@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Details", "Authors", new { id = User.Identity.GetUserId() }, null)
+				</li>
+				<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+    <!-- Menu -->
+                <section id="menu">
+
+                    <!-- Search -->
+                    <section>
+                        <form class="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </section>
+
+                    <!-- Links -->
+                    <section>
+                        <ul class="links">
+                            <li>
+								<h3>@Html.ActionLink("My Account", "Details", "Authors", new { id = User.Identity.GetUserId() }, null)</h3>
+								<p>Details about me</p>
+                            </li>
+                            <li>
+								<h3>@Html.ActionLink("My News", "Index", "News")</h3>
+								<p>Complete list of my news</p>
+                            </li>
+							@Html.Partial("_AdminPartial")
+                        </ul>
+                    </section>
+				
+                    <!-- Actions -->
+                    <section>
+                        <ul class="actions vertical">
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="button big fit" >Log off</a></li>
+                        </ul>
+                    </section>
+
+                </section>
+		}
+	}
+	else
+	{
 		
-    </ul>
-    }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+			<li class="authorize">@Html.ActionLink("Register", "Register", "Account")</li>
+			<li class="authorize">@Html.ActionLink("Log in", "Login", "Account")</li>
+		
+	}
+
+

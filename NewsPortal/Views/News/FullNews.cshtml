@@ -1,0 +1,31 @@
+﻿@model NewsPortal.Models.News
+
+@{
+	ViewBag.Title = "FullNews";
+}
+
+
+
+<div id="main">
+	
+	<article class="post">
+		<header>
+			<div class="title">
+				<h2><a href="#">@Html.DisplayFor(x => Model.Topic)</a></h2>
+			</div>
+			<div class="meta">
+				<time class="published" datetime="2015-11-01">@Html.DisplayFor(x => Model.CreationDate)</time>
+				<a href="#" class="author"><span class="name">@Html.ActionLink(Model.Author.UserName, "Details","Authors",new {id = Model.AuthorId },null)</span><img src="~/images/avatar.jpg" alt="" /></a>
+			</div>
+		</header>
+		<a href="#" class="image featured"><img src=@(new HtmlString(Model.ImageLink)) /></a>
+		<p>@(new HtmlString(Model.Text))</p>
+		<footer>
+			<ul class="stats">
+				<li>@Html.ActionLink(Model.Category.ToString(), "Filter", "Home", new { category = Model.Category }, null)</li>
+				<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => Model.Rating)</a></li>
+				<li><a href="#" class="icon fa-comment">128</a></li>
+			</ul>
+		</footer>
+	</article>
+</div>

@@ -3,23 +3,8 @@
 	ViewBag.Title = "Register";
 }
 
-<head>
-	<meta charset="utf-8">
-	<meta name="description" content="description">
-	<meta name="author" content="Evgeniya">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="../Content/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-	<link href="../Content/css/style.css" rel="stylesheet">
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-			<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
-			<script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
-	<![endif]-->
-</head>
 <body>
-	<div class="container-fluid">
+	<div id="main">
 		<section id="loginForm" class="box-content">
 			<div class="text-right">
 				@Html.ActionLink("Already have an account?", "Login", "Account")
@@ -27,10 +12,16 @@
 			@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 			{
 				@Html.AntiForgeryToken()
-				<h4>Create a new account.</h4>
+				<h4>Create a new account</h4>
 								<hr />
 								@Html.ValidationSummary("", new { @class = "text-danger" })
 								<div class="box">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+										<div class="col-md-10">
+											@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+										</div>
+									</div>
 									<div class="form-group">
 										@Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
 										<div class="col-md-10">
@@ -41,12 +32,6 @@
 										@Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
 										<div class="col-md-10">
 											@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-										</div>
-									</div>
-									<div class="form-group">
-										@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-										<div class="col-md-10">
-											@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
 										</div>
 									</div>
                                     <div class="form-group">
@@ -69,7 +54,7 @@
 									</div>
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-10">
-											<input type="submit" class="btn btn-primary" value="Register" />
+											<input type="submit" class="button big fit" value="Register" />
 										</div>
 									</div>
 								</div>
@@ -79,6 +64,4 @@
 	</div>
 
 </body>
-@section Scripts {
-	@Scripts.Render("~/bundles/jqueryval")
-}
+

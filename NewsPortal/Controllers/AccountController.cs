@@ -109,7 +109,7 @@ namespace NewsPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Author { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, Role = Role.Author};
+                var user = new Author { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName,Age = model.Age, Role = Role.Author};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -4,56 +4,60 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Role)
-        </th>
-    </tr>
+<div id="main">
+	<h2>All Authors</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-		<td>
-			@Html.DisplayFor(modelItem => item.Role)
-		</td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+	<table class="table">
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.LastName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.UserName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Age)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Rating)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Role)
+			</th>
+		</tr>
 
-</table>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.UserName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Age)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Rating)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Role)
+				</td>
+				<td>
+					@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				</td>
+			</tr>
+		}
+
+	</table>
+</div>

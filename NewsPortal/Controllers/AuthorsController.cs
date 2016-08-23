@@ -14,7 +14,7 @@ using NewsPortal.Repository.Implementations;
 namespace NewsPortal.Controllers
 {
 	[Authorize(Roles = "Admin")]
-    public class AuthorsController : Controller
+	public class AuthorsController : Controller
     {
 		private IAuthorRepository authorRepository;
 
@@ -22,19 +22,19 @@ namespace NewsPortal.Controllers
 		{
 			this.authorRepository = repository; 
 		}
+
+	
         // GET: Authors
         public ActionResult Index()
         {
             return View(authorRepository.GetAll<Author>());
         }
 
+		[AllowAnonymous]
         // GET: Authors/Details/5
         public ActionResult Details(long id)
         {
-            if (id < 1)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             Author author = authorRepository.GetSingle<Author>(id);
             if (author == null)
             {
@@ -43,6 +43,7 @@ namespace NewsPortal.Controllers
             return View(author);
         }
 
+		
         // GET: Authors/Create
         public ActionResult Create()
         {
@@ -66,6 +67,7 @@ namespace NewsPortal.Controllers
             return View(author);
         }
 
+		
         // GET: Authors/Edit/5
         public ActionResult Edit(long id)
         {
@@ -91,11 +93,12 @@ namespace NewsPortal.Controllers
             if (ModelState.IsValid)
             {
 				authorRepository.Update(author);  
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return View(author);
         }
 
+		
         // GET: Authors/Delete/5
         public ActionResult Delete(long id)
         {
@@ -118,7 +121,7 @@ namespace NewsPortal.Controllers
         {
 			authorRepository.Delete<Author>(id);
             authorRepository.Save<Author>();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         protected override void Dispose(bool disposing)

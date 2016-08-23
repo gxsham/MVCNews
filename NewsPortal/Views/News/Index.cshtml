@@ -1,39 +1,114 @@
 ﻿@model IEnumerable<NewsPortal.Models.News>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 
-<h2>Index</h2>
+@if (User.IsInRole("Admin"))
+{
+	<div id="main">
+		<h2>All News</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@Styles.Render("~/Content/css")
+		<table class="table">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Topic)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.CreationDate)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Category)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Rating)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.AuthorId)
+				</th>				
+			</tr>
 
-@foreach (var item in Model) {
-   
-        <div class="container-fluid">
-            <h1>@Html.DisplayFor(x=>item.Topic)</h1>
-            <h3><span>@Html.DisplayFor(x => item.Category)</span></h3>
-            <ul class="dl-horizontal">
-                <li>@Html.DisplayFor(x=>item.Author.FirstName)</li>
-                <li>@Html.DisplayFor(x => item.Author.LastName)</li>
-               
-            </ul>
-            <img width="500" height="500" src=@(new HtmlString(item.ImageLink))>
-            <div class="text">
-                <p> @(new HtmlString(item.Text)) </p>
-            </div>  
-            <ul class="dl-horizontal">
-                <li>Rating: @Html.DisplayFor( x => item.Rating)</li>
-                <li>Date: @Html.DisplayFor( x => item.CreationDate)</li>
-            </ul>  
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </div>
-       
-           
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Topic)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CreationDate)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Category)
+					</td>					
+					<td>
+						@Html.DisplayFor(modelItem => item.Rating)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.AuthorId)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+						@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+						@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+					</td>
+				</tr>
+			}
+
+		</table>
+	</div>
 }
+else
+{
+	<div id="main">
+		<h2>My News</h2>
+		<p>
+			@Html.ActionLink("Create New", "Create")
+		</p>
+		@foreach (var item in Model)
+		{
+
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2><a href="#">@Html.DisplayFor(x => item.Topic)</a></h2>
+					</div>
+					<div class="meta">
+						<time class="published">@Html.DisplayFor(x => item.CreationDate)</time>
+						<a href="#" class="author"><span class="name">@Html.DisplayFor(x => item.Author.UserName)</span><img src="images/avatar.jpg" alt="" /></a>
+					</div>
+				</header>
+				<a href="#" class="image featured"><img src=@(new HtmlString(item.ImageLink)) /></a>
+				<p>@(new HtmlString(item.Text))</p>
+				<footer>
+					<ul class="actions">
+						<li>
+							<h3 class="authorize">@Html.ActionLink("Continue Reading", "FullNews", "News", new { id = item.Id }, null)</h3>
+						</li>
+					</ul>
+					<ul class="stats">
+						<li><a href="#">@Html.DisplayFor(x => item.Category)</a></li>
+						<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => item.Rating)</a></li>
+						<li><a href="#" class="icon fa-comment">128</a></li>
+					</ul>
+				</footer>
+				<p>
+					@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+					@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+					@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				</p>
+			</article>
+
+
+
+		}
+		<!-- Pagination -->
+		<ul class="actions pagination">
+			<li><a href="" class="disabled button big previous">Previous Page</a></li>
+			<li><a href="#" class="button big next">Next Page</a></li>
+		</ul>
+
+	</div>
+}
+
+
