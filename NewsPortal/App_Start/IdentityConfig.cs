@@ -10,8 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using NewsPortal.Models;
-using NewsPortal.DAL;
+using Domain;
+using DAL;
 
 namespace NewsPortal
 {
@@ -90,7 +90,9 @@ namespace NewsPortal
             }
             return manager;
         }
-    }
+
+		
+	}
 
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<Author, long>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NewsPortal.Models.News>
+﻿@model IEnumerable<Domain.News>
 
 @{
     ViewBag.Title = "Home Page";
@@ -19,11 +19,10 @@
                 </div>
             </header>
             <a href="#" class="image featured"><img src=@(new HtmlString(item.ImageLink)) /></a>
-            <p>@(new HtmlString(item.Text))</p>
             <footer>
                 <ul class="actions">
 					<li>
-						<h3 class="authorize">@Html.ActionLink("Continue Reading", "FullNews", "News", new { id = item.Id }, null)</h3>
+						<h3 class="authorize">@Html.ActionLink("Read Article", "FullNews", "News", new { id = item.Id }, null)</h3>
 					</li>
                 </ul>
                 <ul class="stats">

@@ -5,7 +5,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using NewsPortal.Models;
+using NewsPortal.ViewModels;
+using Domain;
 
 namespace NewsPortal.Controllers
 {
@@ -110,7 +111,9 @@ namespace NewsPortal.Controllers
             if (ModelState.IsValid)
             {
                 var user = new Author { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName,Age = model.Age, Role = Role.Author};
-                var result = await UserManager.CreateAsync(user, model.Password);
+				//could cause problems
+				var result = await UserManager.CreateAsync(user, model.Password);
+				//var result = UserManager.Create(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

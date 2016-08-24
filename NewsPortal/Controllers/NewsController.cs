@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using NewsPortal.Models;
 using Microsoft.AspNet.Identity;
-using NewsPortal.Controllers;
-using System.Threading.Tasks;
 using NewsPortal.ViewModels;
-using NewsPortal.Repository.Interfaces;
+using Repository.Interfaces;
+using Domain;
 
 namespace NewsPortal.Controllers
 {

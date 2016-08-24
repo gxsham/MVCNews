@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain;
+using Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,10 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using NewsPortal.Models;
-using NewsPortal.DAL;
-using NewsPortal.Repository.Interfaces;
-using NewsPortal.Repository.Implementations;
 
 namespace NewsPortal.Controllers
 {
