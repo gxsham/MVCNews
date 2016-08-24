@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -22,5 +23,6 @@ namespace Domain
 		[Required]
 		public virtual long AuthorId { get; set; }
 		public virtual string ImageLink { get; set; }
+		public virtual List<Comment> Comment { get; set; }
 	}
 }

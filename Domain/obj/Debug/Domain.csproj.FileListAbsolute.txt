@@ -24,3 +24,4 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Domain\bin
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Domain\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Domain\obj\Debug\Domain.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Domain\obj\Debug\Domain.pdb
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache

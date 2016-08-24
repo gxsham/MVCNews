@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\201608241407536_initial.cs" />
+    <Compile Include="Migrations\201608241407536_initial.Designer.cs">
+      <DependentUpon>201608241407536_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NewsContext.cs" />
     <Compile Include="NewsInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +76,11 @@
       <Project>{7d3e359e-b0ec-4c79-bef1-798ea7c3aa37}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608241407536_initial.resx">
+      <DependentUpon>201608241407536_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

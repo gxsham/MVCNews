@@ -24,3 +24,5 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\bin\De
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\obj\Debug\DAL.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\obj\Debug\DAL.pdb
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\obj\Debug\DAL.Migrations.initial.resources
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache

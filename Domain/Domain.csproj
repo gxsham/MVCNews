@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

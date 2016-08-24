@@ -138,6 +138,7 @@ namespace NewsPortal.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[AllowAnonymous]
 		public ActionResult FullNews(long id)
 		{
 			News news = newsRepository.GetSingle<News>((long)id);

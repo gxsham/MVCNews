@@ -25,8 +25,24 @@
 			<ul class="stats">
 				<li>@Html.ActionLink(Model.Category.ToString(), "Filter", "Home", new { category = Model.Category }, null)</li>
 				<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => Model.Rating)</a></li>
-				<li><a href="#" class="icon fa-comment">128</a></li>
+				<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x=>Model.Comment.Count)</a></li>
 			</ul>
 		</footer>
+
+		
+	</article>
+
+	<article class="post">
+		<header>
+			<div class="title">
+				<h2>Comments</h2>
+			</div>
+		</header>
+		@foreach (var item in Model.Comment)
+		{
+			<hr/>
+			<h4>@Html.DisplayFor(x=>item.Author.UserName)</h4>
+			<blockquote>@Html.DisplayFor(x=>item.Text)</blockquote>
+		}
 	</article>
 </div>

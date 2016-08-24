@@ -171,8 +171,6 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Windsor.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Core.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Castle.Windsor.xml
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.Migrations.initial.resources
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\obj\Debug\NewsPortal.csproj.GenerateResource.Cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\DAL.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Domain.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\NewsPortal\bin\Infrastructure.dll

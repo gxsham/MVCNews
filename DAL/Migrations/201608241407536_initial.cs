@@ -1,4 +1,4 @@
-namespace NewsPortal.Migrations
+namespace DAL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -39,12 +39,34 @@ namespace NewsPortal.Migrations
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
                 .Index(t => t.AuthorId);
             
+            CreateTable(
+                "dbo.Comments",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Text = c.String(),
+                        TimeAdded = c.DateTime(nullable: false),
+                        NewsId = c.Long(nullable: false),
+                        AuthorId = c.Long(nullable: false),
+                        Author_Id = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Authors", t => t.Author_Id)
+                .ForeignKey("dbo.News", t => t.NewsId, cascadeDelete: true)
+                .Index(t => t.NewsId)
+                .Index(t => t.Author_Id);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Comments", "NewsId", "dbo.News");
+            DropForeignKey("dbo.Comments", "Author_Id", "dbo.Authors");
             DropForeignKey("dbo.News", "AuthorId", "dbo.Authors");
+            DropIndex("dbo.Comments", new[] { "Author_Id" });
+            DropIndex("dbo.Comments", new[] { "NewsId" });
             DropIndex("dbo.News", new[] { "AuthorId" });
+            DropTable("dbo.Comments");
             DropTable("dbo.News");
             DropTable("dbo.Authors");
         }
