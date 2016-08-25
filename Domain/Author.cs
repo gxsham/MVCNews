@@ -18,6 +18,8 @@ namespace Domain
 		public string Password { get; set; }
 		public Role Role { get; set; }	
 		public virtual List<News> News { get; set; }
+		public virtual ICollection<Comment> Comment { get; set; }
+		public virtual ICollection<Like> Like { get; set; }
 
 	}
 }

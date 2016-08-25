@@ -21,14 +21,14 @@
             <a href="#" class="image featured"><img src=@(new HtmlString(item.ImageLink)) /></a>
             <footer>
                 <ul class="actions">
-					<li>
 						<h3 class="authorize">@Html.ActionLink("Read Article", "FullNews", "News", new { id = item.Id }, null)</h3>
+					<li>
 					</li>
                 </ul>
                 <ul class="stats">
 					<li>@Html.ActionLink(item.Category.ToString(), "Filter", "Home", new { category = item.Category }, null)</li>
-                    <li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => item.Rating)</a></li>
-                    <li><a href="#" class="icon fa-comment">128</a></li>
+					<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => item.Rating)</a></li>
+					<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x => item.Comment.Count)</a></li>
                 </ul>
             </footer>
         </article>

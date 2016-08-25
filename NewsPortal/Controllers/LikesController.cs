@@ -8,37 +8,36 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Domain;
-using NewsPortal.ViewModels;
 
 namespace NewsPortal.Controllers
 {
-    public class CommentsController : Controller
+    public class LikesController : Controller
     {
         private NewsContext db = new NewsContext();
 
-        // GET: Comments
+        // GET: Likes
         public ActionResult Index()
         {
-            var comment = db.Comment.Include(c => c.Author).Include(c => c.News);
-            return View(comment.ToList());
+            var like = db.Like.Include(l => l.Author).Include(l => l.News);
+            return View(like.ToList());
         }
 
-        // GET: Comments/Details/5
+        // GET: Likes/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comment.Find(id);
-            if (comment == null)
+            Like like = db.Like.Find(id);
+            if (like == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(like);
         }
 
-        // GET: Comments/Create
+        // GET: Likes/Create
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName");
@@ -46,91 +45,82 @@ namespace NewsPortal.Controllers
             return View();
         }
 
-        // POST: Comments/Create
+        // POST: Likes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Text,TimeAdded,NewsId,AuthorId")] CommentViewModel commentViewModel)
+        public ActionResult Create([Bind(Include = "Id,NewsId,AuthorId")] Like like)
         {
-			var author = db.Authors.Find(commentViewModel.AuthorId);
-			var comment = new Comment
-			{
-				Text = commentViewModel.Text,
-				TimeAdded = DateTime.Now,
-				NewsId = commentViewModel.NewsId,
-				AuthorId = commentViewModel.AuthorId,
-				//Author = author
-			};
             if (ModelState.IsValid)
             {
-                db.Comment.Add(comment);
+                db.Like.Add(like);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", comment.AuthorId);
-            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", comment.NewsId);
-            return View(comment);
+            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", like.AuthorId);
+            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", like.NewsId);
+            return View(like);
         }
 
-        // GET: Comments/Edit/5
+        // GET: Likes/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comment.Find(id);
-            if (comment == null)
+            Like like = db.Like.Find(id);
+            if (like == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", comment.AuthorId);
-            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", comment.NewsId);
-            return View(comment);
+            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", like.AuthorId);
+            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", like.NewsId);
+            return View(like);
         }
 
-        // POST: Comments/Edit/5
+        // POST: Likes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Text,TimeAdded,NewsId,AuthorId")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,NewsId,AuthorId")] Like like)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comment).State = EntityState.Modified;
+                db.Entry(like).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", comment.AuthorId);
-            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", comment.NewsId);
-            return View(comment);
+            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "LastName", like.AuthorId);
+            ViewBag.NewsId = new SelectList(db.News, "Id", "Topic", like.NewsId);
+            return View(like);
         }
 
-        // GET: Comments/Delete/5
+        // GET: Likes/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comment.Find(id);
-            if (comment == null)
+            Like like = db.Like.Find(id);
+            if (like == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(like);
         }
 
-        // POST: Comments/Delete/5
+        // POST: Likes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Comment comment = db.Comment.Find(id);
-            db.Comment.Remove(comment);
+            Like like = db.Like.Find(id);
+            db.Like.Remove(like);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

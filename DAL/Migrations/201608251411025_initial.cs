@@ -23,6 +23,22 @@ namespace DAL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Comments",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Text = c.String(),
+                        TimeAdded = c.DateTime(nullable: false),
+                        NewsId = c.Long(nullable: false),
+                        AuthorId = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.News", t => t.NewsId, cascadeDelete: true)
+                .ForeignKey("dbo.Authors", t => t.AuthorId)
+                .Index(t => t.NewsId)
+                .Index(t => t.AuthorId);
+            
+            CreateTable(
                 "dbo.News",
                 c => new
                     {
@@ -40,34 +56,36 @@ namespace DAL.Migrations
                 .Index(t => t.AuthorId);
             
             CreateTable(
-                "dbo.Comments",
+                "dbo.Likes",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Text = c.String(),
-                        TimeAdded = c.DateTime(nullable: false),
                         NewsId = c.Long(nullable: false),
                         AuthorId = c.Long(nullable: false),
-                        Author_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Authors", t => t.Author_Id)
                 .ForeignKey("dbo.News", t => t.NewsId, cascadeDelete: true)
+                .ForeignKey("dbo.Authors", t => t.AuthorId)
                 .Index(t => t.NewsId)
-                .Index(t => t.Author_Id);
+                .Index(t => t.AuthorId);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Likes", "AuthorId", "dbo.Authors");
+            DropForeignKey("dbo.Comments", "AuthorId", "dbo.Authors");
+            DropForeignKey("dbo.Likes", "NewsId", "dbo.News");
             DropForeignKey("dbo.Comments", "NewsId", "dbo.News");
-            DropForeignKey("dbo.Comments", "Author_Id", "dbo.Authors");
             DropForeignKey("dbo.News", "AuthorId", "dbo.Authors");
-            DropIndex("dbo.Comments", new[] { "Author_Id" });
-            DropIndex("dbo.Comments", new[] { "NewsId" });
+            DropIndex("dbo.Likes", new[] { "AuthorId" });
+            DropIndex("dbo.Likes", new[] { "NewsId" });
             DropIndex("dbo.News", new[] { "AuthorId" });
-            DropTable("dbo.Comments");
+            DropIndex("dbo.Comments", new[] { "AuthorId" });
+            DropIndex("dbo.Comments", new[] { "NewsId" });
+            DropTable("dbo.Likes");
             DropTable("dbo.News");
+            DropTable("dbo.Comments");
             DropTable("dbo.Authors");
         }
     }

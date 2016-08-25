@@ -14,8 +14,8 @@ namespace NewsPortal.Controllers
 	[Authorize]
 	public class NewsController : Controller
 	{
-		private IRepository newsRepository;
-		public NewsController(IAuthorRepository repository)
+		private INewsRepository newsRepository;
+		public NewsController(INewsRepository repository)
 		{
 			this.newsRepository = repository;
 		}
@@ -31,6 +31,7 @@ namespace NewsPortal.Controllers
 			return View(newsQuery);
 		}
 
+		
 
 		// GET: News/Details/5
 		public ActionResult Details(long? id)
@@ -89,7 +90,12 @@ namespace NewsPortal.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+
 			News news = newsRepository.GetSingle<News>((long)id);
+			if (news.AuthorId != User.Identity.GetUserId<long>() && !User.IsInRole("Admin"))
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -120,6 +126,10 @@ namespace NewsPortal.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			News news = newsRepository.GetSingle<News>((long)id);
+			if (news.AuthorId != User.Identity.GetUserId<long>() && !User.IsInRole("Admin"))
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 			if (news == null)
 			{
 				return HttpNotFound();
@@ -142,6 +152,7 @@ namespace NewsPortal.Controllers
 		public ActionResult FullNews(long id)
 		{
 			News news = newsRepository.GetSingle<News>((long)id);
+			
 			if (news == null)
 			{
 				return HttpNotFound();

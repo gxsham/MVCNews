@@ -7,5 +7,6 @@ namespace Repository.Interfaces
 	public interface INewsRepository : IRepository
 	{
 		IEnumerable<News> GetByCategory(Category category);
+		News GetNewsWithComments(long newsId);
 	}
 }

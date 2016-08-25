@@ -23,6 +23,7 @@ namespace Domain
 		[Required]
 		public virtual long AuthorId { get; set; }
 		public virtual string ImageLink { get; set; }
-		public virtual List<Comment> Comment { get; set; }
+		public virtual ICollection<Comment> Comment { get; set; }
+		public virtual ICollection<Like> Like { get; set; }
 	}
 }
