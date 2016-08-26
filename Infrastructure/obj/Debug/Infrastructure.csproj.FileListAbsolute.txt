@@ -1,4 +1,3 @@
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\Infrastructure.dll.config
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\Infrastructure.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\Infrastructure.pdb
@@ -29,5 +28,6 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastruc
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\System.Web.WebPages.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Infrastructure\obj\Debug\Infrastructure.pdb

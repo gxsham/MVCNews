@@ -94,5 +94,6 @@ namespace NewsPortal.ViewModels
 		public long AuthorId { get; set; }
 		public string AuthorUserName { get; set; }
 		public string ImageLink { get; set; }
+		public int CommentCount { get; set;}
 	}
 }

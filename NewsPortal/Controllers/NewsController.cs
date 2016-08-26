@@ -22,27 +22,26 @@ namespace NewsPortal.Controllers
 		// GET: News
 		public ActionResult Index()
 		{
-			IEnumerable<News> newsQuery = newsRepository.GetAll<News>().OrderByDescending(x=>x.CreationDate);
-			List<PublicIndexNewsViewModel> publicIndexEnumerable = new List<PublicIndexNewsViewModel>();
+			IEnumerable<News> newsQuery = newsRepository.GetAll<News>();
+			IList<PublicIndexNewsViewModel> publicIndexEnumerable = new List<PublicIndexNewsViewModel>();
 
 			if (!User.IsInRole("Admin"))
-				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).ToList();
-			foreach (var item in newsQuery)
+				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).OrderByDescending(x=>x.CreationDate);
+
+			publicIndexEnumerable = newsQuery.Select(item =>
+			new PublicIndexNewsViewModel
 			{
-				var publicIndex = new PublicIndexNewsViewModel
-				{
-					AuthorId = item.AuthorId,
-					AuthorUserName = item.Author.UserName,
-					Category = item.Category,
-					CreationDate = item.CreationDate,
-					Id = item.Id,
-					ImageLink = item.ImageLink,
-					Rating = item.Rating,
-					Text = item.Text,
-					Topic = item.Topic
-				};
-				publicIndexEnumerable.Add(publicIndex);	
-			}
+				AuthorId = item.AuthorId,
+				AuthorUserName = item.Author.UserName,
+				Category = item.Category,
+				CreationDate = item.CreationDate,
+				Id = item.Id,
+				ImageLink = item.ImageLink,
+				Rating = item.Rating,
+				Text = item.Text,
+				Topic = item.Topic,
+				CommentCount = item.Comment.Count
+			}).ToList();
 
 			return View(publicIndexEnumerable);
 		}

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.News>
+﻿@model IEnumerable<NewsPortal.ViewModels.PublicIndexNewsViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -15,20 +15,20 @@
                 </div>
                 <div class="meta">
                     <time class="published" datetime="2015-11-01">@Html.DisplayFor(x => item.CreationDate)</time>
-                    <a href="#" class="author"><span class="name">@Html.DisplayFor(x=>item.Author.UserName)</span><img src="~/images/avatar.jpg" /></a>
+                    <a href="#" class="author"><span class="name">@Html.DisplayFor(x=>item.AuthorUserName)</span><img src="~/images/avatar.jpg" /></a>
                 </div>
             </header>
             <a href="#" class="image featured"><img src=@(new HtmlString(item.ImageLink)) /></a>
             <footer>
-                <ul class="actions">
-						<h3 class="authorize">@Html.ActionLink("Read Article", "FullNews", "News", new { id = item.Id }, null)</h3>
+                <ul class="actions">						
 					<li>
+						<h3 class="authorize">@Html.ActionLink("Read Article", "FullNews", "News", new { id = item.Id }, null)</h3>
 					</li>
                 </ul>
                 <ul class="stats">
 					<li>@Html.ActionLink(item.Category.ToString(), "Filter", "Home", new { category = item.Category }, null)</li>
 					<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => item.Rating)</a></li>
-					<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x => item.Comment.Count)</a></li>
+					<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x => item.CommentCount)</a></li>
                 </ul>
             </footer>
         </article>

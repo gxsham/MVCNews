@@ -1,4 +1,3 @@
-C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\obj\Debug\Repository.Implementations.csprojResolveAssemblyReference.cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\Repository.Implementations.dll.config
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\Repository.Implementations.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\Repository.Implementations.pdb
@@ -25,5 +24,6 @@ C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\System.Web.WebPages.xml
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\obj\Debug\Repository.Implementations.csprojResolveAssemblyReference.cache
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\obj\Debug\Repository.Implementations.dll
 C:\Users\dorin.balan\Documents\Visual Studio 2015\Projects\NewsPortal\Repository.Implementations\obj\Debug\Repository.Implementations.pdb
