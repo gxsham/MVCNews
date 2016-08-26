@@ -1,4 +1,4 @@
-﻿@model Domain.News
+﻿@model NewsPortal.ViewModels.DeleteNewsViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -19,11 +19,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
+            @Html.DisplayNameFor(model => model.CreationTime)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreationDate)
+            @Html.DisplayFor(model => model.CreationTime)
         </dd>
 
         <dt>

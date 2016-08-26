@@ -1,4 +1,4 @@
-﻿@model Domain.News
+﻿@model NewsPortal.ViewModels.FullNewsViewModel
 
 @{
 	ViewBag.Title = "FullNews";
@@ -16,7 +16,7 @@
 			<div class="meta">
 				<time class="published" datetime="2015-11-01">@Html.DisplayFor(x => Model.CreationDate)</time>
 				<a class="author"><img src="~/images/avatar.jpg" alt="" /></a>
-				@Html.ActionLink(Model.Author.UserName, "Details", "Authors", new { id = Model.AuthorId }, null)
+				@Html.ActionLink(Model.AuthorUserName, "Details", "Authors", new { id = Model.AuthorId }, null)
 			</div>
 		</header>
 		<a href="#" class="image featured"><img src=@(new HtmlString(Model.ImageLink)) /></a>
@@ -25,7 +25,7 @@
 			<ul class="stats">
 				<li>@Html.ActionLink(Model.Category.ToString(), "Filter", "Home", new { category = Model.Category }, null)</li>
 				<li><a href="#" class="icon fa-heart">@Html.DisplayFor(x => Model.Rating)</a></li>
-				<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x=>Model.Comment.Count)</a></li>
+				<li><a href="#" class="icon fa-comment">@Html.DisplayFor(x=>Model.Comments.Count)</a></li>
 			</ul>
 		</footer>
 
@@ -38,7 +38,7 @@
 				<h2>Comments</h2>
 			</div>
 		</header>
-		@foreach (var item in Model.Comment)
+		@foreach (var item in Model.Comments)
 		{
 			<hr/>
 			<h4>@Html.DisplayFor(x=>item.Author.UserName)</h4>

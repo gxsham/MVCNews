@@ -1,4 +1,4 @@
-﻿@model Domain.News
+﻿@model NewsPortal.ViewModels.DetailsNewsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -54,11 +54,11 @@
             @Html.DisplayFor(model => model.Rating)
         </dd>
 		<dt>
-			@Html.DisplayNameFor(model => model.Author.UserName)
+			@Html.DisplayNameFor(model => model.AuthorUserName)
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Author.UserName)
+			@Html.DisplayFor(model => model.AuthorUserName)
 		</dd>
         <dt>
             @Html.DisplayNameFor(model => model.ImageLink)

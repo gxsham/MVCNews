@@ -22,13 +22,29 @@ namespace NewsPortal.Controllers
 		// GET: News
 		public ActionResult Index()
 		{
-			IEnumerable<News> newsQuery = newsRepository.GetAll<News>(); 
+			IEnumerable<News> newsQuery = newsRepository.GetAll<News>().OrderByDescending(x=>x.CreationDate);
+			List<PublicIndexNewsViewModel> publicIndexEnumerable = new List<PublicIndexNewsViewModel>();
 
 			if (!User.IsInRole("Admin"))
-				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).OrderByDescending(x=>x.CreationDate).ToList();
-			
+				newsQuery = newsQuery.Where(x => x.Author.UserName == User.Identity.Name).ToList();
+			foreach (var item in newsQuery)
+			{
+				var publicIndex = new PublicIndexNewsViewModel
+				{
+					AuthorId = item.AuthorId,
+					AuthorUserName = item.Author.UserName,
+					Category = item.Category,
+					CreationDate = item.CreationDate,
+					Id = item.Id,
+					ImageLink = item.ImageLink,
+					Rating = item.Rating,
+					Text = item.Text,
+					Topic = item.Topic
+				};
+				publicIndexEnumerable.Add(publicIndex);	
+			}
 
-			return View(newsQuery);
+			return View(publicIndexEnumerable);
 		}
 
 		
@@ -45,7 +61,20 @@ namespace NewsPortal.Controllers
 			{
 				return HttpNotFound();
 			}
-			return View(news);
+			DetailsNewsViewModel publicIndex = new DetailsNewsViewModel
+			{
+				Id = news.Id,
+				Category = news.Category,
+				CreationDate = news.CreationDate,
+				Rating = news.Rating,
+				Topic = news.Topic,
+				AuthorUserName = news.Author.UserName,
+				ImageLink = news.ImageLink,
+				Text = news.Text,
+				
+			};
+			return View(publicIndex);
+			
 		}
 
 		// GET: News/Create
@@ -59,7 +88,7 @@ namespace NewsPortal.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Topic,Category,ImageLink,Text")] NewsViewModel newsVM)
+		public ActionResult Create([Bind(Include = "Topic,Category,ImageLink,Text")] CreateNewsViewModel newsVM)
 		{
 
 			var authorId = User.Identity.GetUserId<long>();
@@ -92,15 +121,26 @@ namespace NewsPortal.Controllers
 			}
 
 			News news = newsRepository.GetSingle<News>((long)id);
+
 			if (news.AuthorId != User.Identity.GetUserId<long>() && !User.IsInRole("Admin"))
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+
 			if (news == null)
 			{
 				return HttpNotFound();
 			}
-			return View(news);
+
+			EditNewsViewModel editNewsViewModel = new EditNewsViewModel
+			{
+				Id = news.Id,
+				Topic = news.Topic,
+				Category = news.Category,
+				Text = news.Text,
+				ImageLink = news.ImageLink
+			};
+			return View(editNewsViewModel);
 		}
 
 		// POST: News/Edit/5
@@ -108,14 +148,20 @@ namespace NewsPortal.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(News news)
+		public ActionResult Edit(EditNewsViewModel editViewModel)
 		{
 			if (ModelState.IsValid)
 			{
+
+				News news = newsRepository.GetSingle<News>(editViewModel.Id);
+				news.Topic = editViewModel.Topic;
+				news.Category = editViewModel.Category;
+				news.Text = editViewModel.Text;
+				news.ImageLink = editViewModel.ImageLink;
 				newsRepository.Update(news);
 				return RedirectToAction("Index");
 			}
-			return View(news);
+			return View(editViewModel);
 		}
 
 		// GET: News/Delete/5
@@ -134,7 +180,15 @@ namespace NewsPortal.Controllers
 			{
 				return HttpNotFound();
 			}
-			return View(news);
+			DeleteNewsViewModel deleteNewsViewModel = new DeleteNewsViewModel
+			{
+				Id = news.Id,
+				Category = news.Category,
+				Rating = news.Rating,
+				CreationTime = news.CreationDate,
+				Text = news.Text
+			};
+			return View(deleteNewsViewModel);
 		}
 
 		
@@ -152,12 +206,26 @@ namespace NewsPortal.Controllers
 		public ActionResult FullNews(long id)
 		{
 			News news = newsRepository.GetSingle<News>((long)id);
-			
+
 			if (news == null)
 			{
 				return HttpNotFound();
 			}
-			return View(news);
+			FullNewsViewModel fullNewsViewModel = new FullNewsViewModel
+			{
+				Id = news.Id,
+				Topic = news.Topic,
+				Category = news.Category,
+				CreationDate = news.CreationDate,
+				AuthorUserName = news.Author.UserName,
+				AuthorId = news.AuthorId,
+				ImageLink = news.ImageLink,
+				Text = news.Text,
+				Rating = news.Rating,
+				CommentCount = news.Comment.Count,
+				Comments = news.Comment.ToList()
+			};
+			return View(fullNewsViewModel);
 		}
 
 		protected override void Dispose(bool disposing)
